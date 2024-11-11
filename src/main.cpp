@@ -165,6 +165,13 @@ void loop()
             IrSender.sendPulseDistanceWidthFromArray(38, 1150, 400, 1100, 2400, 1100, 450, &remote_code.raw_data[0], remote_code.bits, PROTOCOL_IS_LSB_FIRST, 0,0);
         } else if(strcmp(remote_code.protocol, "NEC")==0){
             IrSender.sendNEC(remote_code.address, remote_code.command, 0);
+        } else if(strcmp(remote_code.protocol, "Samsung") == 0){
+            //Working below
+            IrSender.sendSamsung(remote_code.address,remote_code.command,  0);
+
+            // For Samsung TV Q7F number of repeats should be 1
+            // IrSender.sendSamsung(remote_code.address, remote_code.command, 1);
+            Serial.println(F("Samsung command sent"));
         }
         else {
             Serial.println(F("Protocol not supported"));
